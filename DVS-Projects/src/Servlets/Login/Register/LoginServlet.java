@@ -58,6 +58,7 @@ public class LoginServlet extends HttpServlet
 		catch(Exception e)
 		{
 			System.out.println("Error");
+			e.printStackTrace();
 			 RequestDispatcher rd=x.getRequestDispatcher("Login.html");  
 		     rd.forward(x,y);  
 		}
