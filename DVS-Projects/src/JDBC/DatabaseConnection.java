@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DatabaseConnection {
 
-	public static void main(String[] args)
+	public void DBC()
 	{
 		try 
 		{
