@@ -36,14 +36,25 @@ public class RegisterUser extends HttpServlet
 		PrintWriter out = y.getWriter();            
 		String n=x.getParameter("Username");  
 		String p=x.getParameter("Password"); 
-		PreparedStatement ps = DatabaseConnection.con.prepareStatement("insert into DVS(Username, Password) values(?,?)");   
-		ps.setString(1,n);  
-		ps.setString(2,p);  		          
-		ps.executeUpdate();  
-		System.out.println("Data Inserted");
-		out.print("Data Loaded");
-		 RequestDispatcher rd=x.getRequestDispatcher("Login.html");  
-	        rd.forward(x,y);  
+		boolean validate = ValidateUser.validate(n);
+		System.out.println(validate);
+		
+		if(validate == true)
+		{
+			PreparedStatement ps = DatabaseConnection.con.prepareStatement("insert into DVS(Username, Password) values(?,?)");   
+			ps.setString(1,n);  
+			ps.setString(2,p);
+			ps.executeUpdate(); 
+			System.out.println("Data Inserted");
+			RequestDispatcher rd=x.getRequestDispatcher("Login.html");  
+		    rd.forward(x,y);  
+		}
+		else{
+			System.out.println();
+			out.print("Username/Password already exists");
+			out.print("</br></br><a href=file:///C:/Users/Avankia049/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
+		}
+	
 		}
 		catch(Exception e)
 		{
