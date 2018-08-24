@@ -52,7 +52,7 @@ public class RegisterUser extends HttpServlet
 		else{
 			System.out.println();
 			out.print("Username/Password already exists");
-			out.print("</br></br><a href=file:///C:/Users/Avankia049/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
+			out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
 		}
 	
 		}
