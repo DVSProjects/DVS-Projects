@@ -39,16 +39,19 @@ public class LoginServlet extends HttpServlet
 			System.out.println(n);
 			String p=x.getParameter("Password"); 
 			System.out.println(p);
-			PreparedStatement ps = DatabaseConnection.con.prepareStatement("select * from DVS where USERNAME=? and PASSWORD=?");
+			PreparedStatement ps = DatabaseConnection.con.prepareStatement("select USERNAME,PASSWORD from DVS where USERNAME=? and PASSWORD=?");
 			ps.setString(1, n);
 			ps.setString(2, p);
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()==true){
-			System.out.println("Welcome");
-			out.println("Welcome");
+			if(rs.next()==true){ 
+			System.out.println("Welcome" );
+			out.println("Welcome"+" "+n);
+			
 			}
 			else
 			{
+				
+				System.out.println(rs.next());
 				out.print("Please enter a valid Username/Password");
 				out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/Login.html>Go back</a>");
 				  

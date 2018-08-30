@@ -3,6 +3,7 @@ package Servlets.Login.Register;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
 import javax.servlet.RequestDispatcher;
@@ -18,6 +19,7 @@ import JDBC.*;
 @WebServlet("/RegisterUser")
 public class RegisterUser extends HttpServlet
 {
+	
 	private static final long serialVersionUID = 1L;
 	public void init(ServletConfig config) throws ServletException 
 	{
@@ -33,7 +35,7 @@ public class RegisterUser extends HttpServlet
 		try
 		{
 		y.setContentType("text/html");
-		PrintWriter out = y.getWriter();            
+		PrintWriter out = y.getWriter();    
 		String n=x.getParameter("Username");  
 		String p=x.getParameter("Password"); 
 		boolean validate = ValidateUser.validate(n);
@@ -48,6 +50,7 @@ public class RegisterUser extends HttpServlet
 			System.out.println("Data Inserted");
 			RequestDispatcher rd=x.getRequestDispatcher("Login.html");  
 		    rd.forward(x,y);  
+		    
 		}
 		else{
 			System.out.println();
@@ -55,6 +58,11 @@ public class RegisterUser extends HttpServlet
 			out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
 		}
 	
+		}
+		catch (SQLIntegrityConstraintViolationException s){
+			PrintWriter out1 = y.getWriter();
+			out1.print("Username/Password already exists");
+			out1.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
 		}
 		catch(Exception e)
 		{
