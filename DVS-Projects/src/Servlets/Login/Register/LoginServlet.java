@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet 
@@ -24,36 +25,52 @@ public class LoginServlet extends HttpServlet
 	private static final long serialVersionUID = 1L;	
 	public void init(ServletConfig config) throws ServletException
 	{
-		DatabaseConnection.databaseConn();
+		//JDBC Connectivity
+		DatabaseConnection.databaseConn(); 
 	}
 	public void destroy()
 	{
 		
 	}
-	protected void service(HttpServletRequest x, HttpServletResponse y) throws ServletException, IOException 
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		try
 		{
-			PrintWriter out = y.getWriter();            
-			String n=x.getParameter("Username");  
-			System.out.println(n);
-			String p=x.getParameter("Password"); 
-			System.out.println(p);
-			PreparedStatement ps = DatabaseConnection.con.prepareStatement("select USERNAME,PASSWORD from DVS where USERNAME=? and PASSWORD=?");
-			ps.setString(1, n);
-			ps.setString(2, p);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()==true){ 
+			PrintWriter Out = response.getWriter();  
+			
+			//Accepting Username and Password from UI
+			
+			String LoginUsername=request.getParameter("Username");  
+
+			String LoginPassword=request.getParameter("Password"); 
+	
+			PreparedStatement SelectData = DatabaseConnection.con.prepareStatement("select USERNAME,PASSWORD from DVS where USERNAME=? and PASSWORD=?");
+			SelectData.setString(1, LoginUsername);
+			SelectData.setString(2, LoginPassword);
+			ResultSet SelectedData = SelectData.executeQuery();
+			
+			//Checking whether Username and password are stored in DB successfully or not
+			
+			if(SelectedData.next()==true)
+			{ 
 			System.out.println("Welcome" );
-			out.println("Welcome"+" "+n);
+			
+			//Storing the value of Username in a session
+			
+			HttpSession session = request.getSession();
+		    session.setAttribute("LoggedInUsername",LoginUsername );
+		    
+			RequestDispatcher rd=request.getRequestDispatcher("ProfilePicChange.jsp");  
+		    rd.forward(request,response); 
+			
 			
 			}
 			else
 			{
 				
-				System.out.println(rs.next());
-				out.print("Please enter a valid Username/Password");
-				out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/Login.html>Go back</a>");
+				System.out.println(SelectedData.next());
+				Out.print("Please enter a valid Username/Password");
+				Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/Login.html>Go back</a>");
 				  
 				
 			}
@@ -62,8 +79,9 @@ public class LoginServlet extends HttpServlet
 		{
 			System.out.println("Error");
 			e.printStackTrace();
-			 RequestDispatcher rd=x.getRequestDispatcher("Login.html");  
-		     rd.forward(x,y);  
+						 
+			RequestDispatcher rd=request.getRequestDispatcher("Login.html");
+			rd.forward(request,response);  
 		}
 	}
 }

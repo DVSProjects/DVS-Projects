@@ -1,5 +1,5 @@
 package Servlets.Login.Register;
-
+import User.Image.Insert.Update.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
@@ -30,39 +30,50 @@ public class RegisterUser extends HttpServlet
 		
 	}
 
-	protected void service(HttpServletRequest x, HttpServletResponse y) throws ServletException, IOException
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		PrintWriter Out = response.getWriter();    
+
 		try
 		{
-		y.setContentType("text/html");
-		PrintWriter out = y.getWriter();    
-		String n=x.getParameter("Username");  
-		String p=x.getParameter("Password"); 
-		boolean validate = ValidateUser.validate(n);
+		response.setContentType("text/html");
+		String UsernameToBeRegistered=request.getParameter("Username");  
+		String PasswordToBeRegistered=request.getParameter("Password"); 
+		
+		//Validating whether user is existing or not
+		
+		boolean validate = ValidateUser.validate(UsernameToBeRegistered);
 		System.out.println(validate);
 		
 		if(validate == true)
 		{
-			PreparedStatement ps = DatabaseConnection.con.prepareStatement("insert into DVS(Username, Password) values(?,?)");   
-			ps.setString(1,n);  
-			ps.setString(2,p);
-			ps.executeUpdate(); 
+			PreparedStatement InsertData = DatabaseConnection.con.prepareStatement("insert into DVS(Username, Password) values(?,?)");   
+			InsertData.setString(1,UsernameToBeRegistered);  
+			InsertData.setString(2,PasswordToBeRegistered);
+			InsertData.executeUpdate(); 
 			System.out.println("Data Inserted");
-			RequestDispatcher rd=x.getRequestDispatcher("Login.html");  
-		    rd.forward(x,y);  
+			
+			// Email Verification has to be called
+			
+			//Create a folder for Registered user to store Profile picture
+			
+			CreateFolderForLoggedinUser.createFolder(UsernameToBeRegistered);
+			RequestDispatcher rd=request.getRequestDispatcher("Login.html");  
+		    rd.forward(request,response);  
 		    
 		}
-		else{
+		else
+		{
 			System.out.println();
-			out.print("Username/Password already exists");
-			out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
+			Out.print("Username/Password already exists");
+			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
 		}
 	
 		}
-		catch (SQLIntegrityConstraintViolationException s){
-			PrintWriter out1 = y.getWriter();
-			out1.print("Username/Password already exists");
-			out1.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
+		catch (SQLIntegrityConstraintViolationException s)
+		{
+			Out.print("Username/Password already exists");
+			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
 		}
 		catch(Exception e)
 		{

@@ -5,13 +5,13 @@ import java.sql.ResultSet;
 
 public class ValidateUser 
 {
-	public static boolean validate(String uname)
+	public static boolean validate(String UsernameRequestedToRegister)
 	{
 		DatabaseConnection.databaseConn();
 		try
 		{
 			PreparedStatement ps = DatabaseConnection.con.prepareStatement("select USERNAME from DVS where USERNAME=?");
-			ps.setString(1, uname);
+			ps.setString(1, UsernameRequestedToRegister);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()==true)
 			{

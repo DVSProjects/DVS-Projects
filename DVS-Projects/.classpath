@@ -14,5 +14,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="E:/apache-tomcat-7.0.90/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Avankia049/Downloads/javax.mail (1).jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
