@@ -58,7 +58,7 @@ public class RegisterUser extends HttpServlet
 			//Create a folder for Registered user to store Profile picture
 			
 			CreateFolderForLoggedinUser.createFolder(UsernameToBeRegistered);
-			RequestDispatcher rd=request.getRequestDispatcher("Login.html");  
+			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");  
 		    rd.forward(request,response);  
 		    
 		}
@@ -66,14 +66,14 @@ public class RegisterUser extends HttpServlet
 		{
 			System.out.println();
 			Out.print("Username/Password already exists");
-			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
+			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.jsp>Go back</a>");
 		}
 	
 		}
 		catch (SQLIntegrityConstraintViolationException s)
 		{
 			Out.print("Username/Password already exists");
-			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.html>Go back</a>");
+			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.jsp>Go back</a>");
 		}
 		catch(Exception e)
 		{

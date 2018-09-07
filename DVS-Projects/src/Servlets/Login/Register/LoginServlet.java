@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet
 				
 				System.out.println(SelectedData.next());
 				Out.print("Please enter a valid Username/Password");
-				Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/Login.html>Go back</a>");
+				Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/Login.jsp>Go back</a>");
 				  
 				
 			}
