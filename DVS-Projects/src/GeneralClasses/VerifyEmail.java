@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
 public class VerifyEmail
 {
 	//public static void main(String []args) throws UnsupportedEncodingException
-	public static void emailVerification(String CodeToBeSent) 
+	public static String emailVerification(String CodeToBeSent) 
 	{
 		String Email = CodeToBeSent;
 		System.out.println(Email);
@@ -40,7 +40,8 @@ public class VerifyEmail
             }
           });
 
-        try {
+        try
+        {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("DVS", "no-reply@dvs.com"));
@@ -55,9 +56,11 @@ public class VerifyEmail
             Transport.send(message);
 
             System.out.println("Done");
+            return RandomCode;
          
 
         }
+    
         catch (MessagingException e)
         {
             throw new RuntimeException(e);
@@ -67,6 +70,7 @@ public class VerifyEmail
 			
 			e.printStackTrace();
 		}
+        return null;
 	}
 
 }

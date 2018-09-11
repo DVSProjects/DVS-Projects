@@ -2,6 +2,8 @@ package GeneralClasses;
 
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 public class RandomStringValues {
 	public static String randomValues()
 	{
@@ -14,7 +16,8 @@ public class RandomStringValues {
 			combination.append(characters.charAt(index));
 		}
 		String VerificationCode = combination.toString();
-		System.out.println(VerificationCode);
+		//System.out.println(VerificationCode);
+		
 		return VerificationCode;
 	}
 }

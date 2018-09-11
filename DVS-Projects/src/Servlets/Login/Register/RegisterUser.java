@@ -9,10 +9,12 @@ import java.util.Scanner;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import JDBC.*;
 
@@ -37,19 +39,30 @@ public class RegisterUser extends HttpServlet
 		try
 		{
 		response.setContentType("text/html");
-		String UsernameToBeRegistered=request.getParameter("Username");  
-		String PasswordToBeRegistered=request.getParameter("Password"); 
+		//String UsernameToBeRegistered=request.getParameter("Username");  
+		//String PasswordToBeRegistered=request.getParameter("Password"); 
 		
+		HttpSession session = request.getSession();
+		String UsernameToBeRegistered = (String) session.getAttribute("RegisterUserEmail");
+		String Password = (String) session.getAttribute("Password");
+		String Firstname = (String) session.getAttribute("Firstname");
+		String LastName = (String) session.getAttribute("Lastname");
+	
+		String ProfilePic = null;
 		//Validating whether user is existing or not
 		
-		boolean validate = ValidateUser.validate(UsernameToBeRegistered);
-		System.out.println(validate);
+		//boolean validate = ValidateUser.validate(UsernameToBeRegistered);
+		//System.out.println(validate);
 		
-		if(validate == true)
-		{
-			PreparedStatement InsertData = DatabaseConnection.con.prepareStatement("insert into DVS(Username, Password) values(?,?)");   
+		//if(validate == true)
+		//{
+			PreparedStatement InsertData = DatabaseConnection.con.prepareStatement("insert into DVS(Username, Password, PROFILEPICTURE, FIRSTNAME, LASTNAME)"
+					+ " values(?,?,?,?,?)");   
 			InsertData.setString(1,UsernameToBeRegistered);  
-			InsertData.setString(2,PasswordToBeRegistered);
+			InsertData.setString(2,Password);
+			InsertData.setString(3,ProfilePic );
+			InsertData.setString(4,Firstname);  
+			InsertData.setString(5,LastName);  
 			InsertData.executeUpdate(); 
 			System.out.println("Data Inserted");
 			
@@ -61,19 +74,20 @@ public class RegisterUser extends HttpServlet
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");  
 		    rd.forward(request,response);  
 		    
-		}
-		else
+	//	}
+	/*	else
 		{
 			System.out.println();
 			Out.print("Username/Password already exists");
 			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.jsp>Go back</a>");
-		}
+		}	*/
 	
 		}
 		catch (SQLIntegrityConstraintViolationException s)
 		{
-			Out.print("Username/Password already exists");
+			Out.print("Unable to load the page, please check the SQL query");
 			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.jsp>Go back</a>");
+			s.printStackTrace();
 		}
 		catch(Exception e)
 		{
