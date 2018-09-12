@@ -27,6 +27,8 @@
     <div class="container" style="background-color:#f1f1f1">
     
 <a href="http://localhost:8080/DVS-Projects/NewUser.jsp">New User?</a>
+<a href="http://localhost:8080/DVS-Projects/ForgotPassword.jsp">Forgot Password?</a>
+
     </div>
   </form>
 </div>

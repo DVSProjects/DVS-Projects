@@ -32,7 +32,7 @@
 		else
 		{			
 			Out.print("Username/Password already exists");
-			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/Login.jsp>Go back to Login</a>");		
+			Out.print("</br></br><a href=http://localhost:8080/DVS-Projects/Login.jsp>Go back to Login</a>");		
 		}
   
     %>
