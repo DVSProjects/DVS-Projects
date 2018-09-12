@@ -43,19 +43,33 @@
 </body>
 <script>
 //Comparing password and confirm password and displaying message 
-var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('Cpassword').value) {
-   
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'Passwords are matching';
-     document.getElementById('submit').disabled = false;
-  } else {
+var check = function() 
+{
+ var pass = document.getElementById('password').value;
+ 
+     if (pass.length > 6 && document.getElementById('password').value == document.getElementById('Cpassword').value)
+     {
+       document.getElementById('message').style.color = 'green';
+       document.getElementById('message').innerHTML = 'Passwords are matching';
+        document.getElementById('submit').disabled = false;
+     } 
+  
+     else 
+     {
+      if(pass.length <= 6)
+       {
+       document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'Password is too small';
+           document.getElementById('submit').disabled = true;
      
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'Passwords are not matching';
-     document.getElementById('submit').disabled = true;
-  }
+      }
+      else
+      {
+       document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'Passwords are not matching';
+           document.getElementById('submit').disabled = true;
+       }
+     }
 }
 
 function myFunction() {
