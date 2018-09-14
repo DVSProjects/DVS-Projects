@@ -18,21 +18,28 @@
     boolean VerifyEmailExistsOrNot = ValidateUser.validate(RegisterUserEmail);
     System.out.println(VerifyEmailExistsOrNot);
   	//System.out.println(RegisterUserEmail);
-  	
+  	boolean display = false;
 		if(VerifyEmailExistsOrNot == true)
 		{
+			try{
     		VerificationCode = VerifyEmail.emailVerification(RegisterUserEmail);
 			System.out.println(VerificationCode);
 		    session.setAttribute("RegisterUserEmail",RegisterUserEmail ); 
 		    session.setAttribute("Firstname",Firstname );
 		    session.setAttribute("Lastname",Lastname);
 		    session.setAttribute("Password",Password);
-
+			}
+			catch(Exception e){
+				Out.print("Please enter the correct email address");
+				Out.print("</br></br><a href=http://localhost:8080/DVS-Projects/NewUser.jsp>Go back</a>");	
+				display = true;
+			}
 		}
 		else
 		{			
 			Out.print("Username/Password already exists");
-			Out.print("</br></br><a href=http://localhost:8080/DVS-Projects/Login.jsp>Go back to Login</a>");		
+			Out.print("</br></br><a href=http://localhost:8080/DVS-Projects/Login.jsp>Go back to Login</a>");
+			display = true;
 		}
   
     %>
@@ -49,6 +56,8 @@
 
 <title>Insert title here</title>
 </head>
+<%if(display == false){%>
+
 <body>
 <div id="id02">
   
@@ -71,6 +80,7 @@
   </form>
 </div>
 </body>
+<%}%>
 <script>
 var check = function()
 {

@@ -24,7 +24,7 @@
 		{
 			NewPassword = VerifyEmail.emailVerification(PasswordChangeRequestEmail);
 			System.out.println(NewPassword);
-			DatabaseConnection.databaseConn();
+			//DatabaseConnection.databaseConn();
 			preparedStatement = DatabaseConnection.con.prepareStatement("UPDATE DVS SET PASSWORD = ? WHERE USERNAME=?");
 			preparedStatement.setString(1,NewPassword);
 			preparedStatement.setString(2,PasswordChangeRequestEmail);

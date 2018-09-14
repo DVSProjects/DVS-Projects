@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sun.mail.smtp.SMTPAddressFailedException;
+
 import JDBC.*;
 
 @WebServlet("/RegisterUser")
@@ -45,7 +47,7 @@ public class RegisterUser extends HttpServlet
 		HttpSession session = request.getSession();
 		String UsernameToBeRegistered = (String) session.getAttribute("RegisterUserEmail");
 		String Password = (String) session.getAttribute("Password");
-		String Firstname = (String) session.getAttribute("Firstname");
+		String FirstName = (String) session.getAttribute("Firstname");
 		String LastName = (String) session.getAttribute("Lastname");
 	
 		String ProfilePic = null;
@@ -56,12 +58,11 @@ public class RegisterUser extends HttpServlet
 		
 		//if(validate == true)
 		//{
-			PreparedStatement InsertData = DatabaseConnection.con.prepareStatement("insert into DVS(Username, Password, PROFILEPICTURE, FIRSTNAME, LASTNAME)"
-					+ " values(?,?,?,?,?)");   
+			PreparedStatement InsertData = DatabaseConnection.con.prepareStatement("insert into DVS(USERNAME, PASSWORD, PROFILEPICTURE, FIRSTNAME, LASTNAME) values(?,?,?,?,?)");   
 			InsertData.setString(1,UsernameToBeRegistered);  
 			InsertData.setString(2,Password);
-			InsertData.setString(3,ProfilePic );
-			InsertData.setString(4,Firstname);  
+			InsertData.setString(3, ProfilePic );
+			InsertData.setString(4,FirstName);  
 			InsertData.setString(5,LastName);  
 			InsertData.executeUpdate(); 
 			System.out.println("Data Inserted");
@@ -89,6 +90,7 @@ public class RegisterUser extends HttpServlet
 			Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/NewUser.jsp>Go back</a>");
 			s.printStackTrace();
 		}
+		
 		catch(Exception e)
 		{
 			e.printStackTrace();

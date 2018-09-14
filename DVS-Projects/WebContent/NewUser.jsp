@@ -47,7 +47,7 @@ var check = function()
 {
  var pass = document.getElementById('password').value;
  
-     if (pass.length > 6 && document.getElementById('password').value == document.getElementById('Cpassword').value)
+     if (pass.length > 5 && pass.length < 15 && document.getElementById('password').value == document.getElementById('Cpassword').value)
      {
        document.getElementById('message').style.color = 'green';
        document.getElementById('message').innerHTML = 'Passwords are matching';
@@ -56,10 +56,10 @@ var check = function()
   
      else 
      {
-      if(pass.length <= 6)
+      if(pass.length < 6)
        {
        document.getElementById('message').style.color = 'red';
-          document.getElementById('message').innerHTML = 'Password is too small';
+          document.getElementById('message').innerHTML = 'Password shuold be minimum of 6 and maximum of 14 characters';
            document.getElementById('submit').disabled = true;
      
       }

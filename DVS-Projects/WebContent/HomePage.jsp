@@ -8,17 +8,17 @@
 </head>
 <body>
 	<div class="topnav">
-		<a class="active" href="/EmployeeDetails/index.jsp" >Home</a>
-		<a href="/EmployeeDetails/LeaveEligibility.jsp">Socialized</a>
-		<a href="/EmployeeDetails/LeaveForm.jsp">Country Nuisance</a>
-		<a href="/EmployeeDetails/About.jsp">News</a>
+	<a href="/DVS-Projects/HomePage.jsp" >Home</a>
+		<a href="http://localhost:8080/DVS-Projects/Socialized.jsp">Socialized</a>
+		<a href="/DVS-Projects/CountryGeneralNews.jsp">Country Nuisance</a>
+		<a class="active" href="/DVS-Projects/News.jsp">News</a>
 	
 	<form action="http://localhost:8080/DVS-Projects/ProfilePicture" method="post" enctype="multipart/form-data">
 		<div class="top" >
 			 
 			ProfilePicture<input type="file" name="ProfilePicture" size="5" />
 			<input type="submit" value="save">
-			 
+			 <a href="http://localhost:8080/DVS-Projects/Logout" >Log Out</a>
 			
 		</div>
 		

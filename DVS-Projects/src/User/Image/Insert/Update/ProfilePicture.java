@@ -35,7 +35,7 @@ public class ProfilePicture extends HttpServlet
 	{
 		//Database Connection
 	
-		DatabaseConnection.databaseConn(); 
+		//DatabaseConnection.databaseConn(); 
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

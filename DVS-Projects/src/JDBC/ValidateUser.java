@@ -7,7 +7,7 @@ public class ValidateUser
 {
 	public static boolean validate(String UsernameRequestedToRegister)
 	{
-		DatabaseConnection.databaseConn();
+		//DatabaseConnection.databaseConn();
 		try
 		{
 			PreparedStatement ps = DatabaseConnection.con.prepareStatement("select USERNAME from DVS where USERNAME=?");

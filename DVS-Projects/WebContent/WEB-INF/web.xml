@@ -23,5 +23,4 @@
     <servlet-name>User</servlet-name>
     <url-pattern>/NewUser</url-pattern>
   </servlet-mapping>
-
 </web-app>

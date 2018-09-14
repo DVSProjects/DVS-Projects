@@ -2,7 +2,7 @@
 import="java.sql.*"
 import="java.sql.PreparedStatement"%>
 <%
-DatabaseConnection.databaseConn();
+//DatabaseConnection.databaseConn();
 HttpSession sessions = request.getSession();
 String ProfileUsername = (String) session.getAttribute("LoggedInUsername");
 String ProfilePicPath="C:\\git\\Users\\"+ProfileUsername+"\\"+ProfileUsername+".jpg";
@@ -23,14 +23,16 @@ String ProfilePicPath="C:\\git\\Users\\"+ProfileUsername+"\\"+ProfileUsername+".
 <body>
 
 	<div class="topnav">
-		<a class="active" href="/EmployeeDetails/index.jsp" >Home</a>
-		<a href="/EmployeeDetails/LeaveEligibility.jsp">Socialized</a>
-		<a href="/EmployeeDetails/LeaveForm.jsp">Country Nuisance</a>
-		<a href="/EmployeeDetails/About.jsp">News</a>
+		<a class="active" href="/DVS-Projects/HomePage.jsp" >Home</a>
+		<a href="http://localhost:8080/DVS-Projects/Socialized.jsp">Socialized</a>
+		<a href="/DVS-Projects/CountryGeneralNews.jsp">Country Nuisance</a>
+		<a  href="/DVS-Projects/News.jsp">News</a>
 		
 		<div class="top">
 			<a class='img-circle' href="HomePage.jsp"> <img class = "img-circle" src=<%=ProfilePicPath %> style="height:42px; width:42px;"></a>
 			<a href="HomePage.jsp">Edit profile</a>		 
+						 <a href="http://localhost:8080/DVS-Projects/Logout" >Log Out</a>
+			
 		</div>
 	</div>	
 	<div class="footer">

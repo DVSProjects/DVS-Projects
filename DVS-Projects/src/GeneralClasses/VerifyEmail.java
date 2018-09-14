@@ -8,6 +8,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import com.sun.mail.smtp.SMTPAddressFailedException;
+
 import java.io.UnsupportedEncodingException;
 
 public class VerifyEmail
@@ -70,6 +73,7 @@ public class VerifyEmail
 			
 			e.printStackTrace();
 		}
+      
         return null;
 	}
 
