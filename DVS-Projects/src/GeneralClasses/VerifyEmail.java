@@ -15,14 +15,14 @@ import java.io.UnsupportedEncodingException;
 
 public class VerifyEmail
 {
-	//public static void main(String []args) throws UnsupportedEncodingException
 	public static String emailVerification(String CodeToBeSent) 
 	{
 		String Email = CodeToBeSent;
-		System.out.println(Email);
+		
+		//System.out.println(Email);
 
-		final String EmailSender = "sridhara.r@avankia.com";
-        final String Emailpassword = "Avanki@21";
+		final String EmailSender = "projectsdvs@gmail.com";
+        final String Emailpassword = "DVS@sridevi";
         final String host = "smtp.gmail.com" ;
 
         Properties props = new Properties();
@@ -40,6 +40,7 @@ public class VerifyEmail
             protected PasswordAuthentication getPasswordAuthentication() 
             {
                 return new PasswordAuthentication(EmailSender, Emailpassword);
+               
             }
           });
 
@@ -52,10 +53,11 @@ public class VerifyEmail
             InternetAddress.parse(Email));
             String RandomCode = RandomStringValues.randomValues();
             message.setSubject("Email Verification");
-            message.setText("Hi,"+ "\n\n This is an auto generated email\n\n Your Verification code is : "+RandomCode);
+            message.setText("Hi,"+ "\n\n This is an auto generated email, kindly do not reply to this\n\n Your Verification code is : "+RandomCode);
            
             Transport transport = session.getTransport("smtp");
             transport.connect(host, EmailSender, Emailpassword);
+            System.out.println(EmailSender);
             Transport.send(message);
 
             System.out.println("Done");

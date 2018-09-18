@@ -67,8 +67,6 @@ public class RegisterUser extends HttpServlet
 			InsertData.executeUpdate(); 
 			System.out.println("Data Inserted");
 			
-			// Email Verification has to be called
-			
 			//Create a folder for Registered user to store Profile picture
 			
 			CreateFolderForLoggedinUser.createFolder(UsernameToBeRegistered);

@@ -55,11 +55,11 @@ public class LoginServlet extends HttpServlet
 			{ 
 			System.out.println("Welcome" );
 			
-			//Storing the value of Username in a session
+			//Storing the value of Username and Firstname in a session
 			
 			HttpSession session = request.getSession();
 		    session.setAttribute("LoggedInUsername",LoginUsername );
-		    
+		   
 			RequestDispatcher rd=request.getRequestDispatcher("ProfilePicChange.jsp");  
 		    rd.forward(request,response); 
 			
@@ -67,8 +67,6 @@ public class LoginServlet extends HttpServlet
 			}
 			else
 			{
-				
-				System.out.println(SelectedData.next());
 				Out.print("Please enter a valid Username/Password");
 				Out.print("</br></br><a href=file:///C:/git/DVS-Projects/DVS-Projects/WebContent/Login.jsp>Go back</a>");
 				  
