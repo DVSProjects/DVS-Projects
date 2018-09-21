@@ -22,10 +22,10 @@ import="java.sql.PreparedStatement"%>
 	</head>
 	<body>
 		<div class="topnav">
-			<a class="active" href="/DVS-Projects/HomePage.jsp" >Home</a>
-			<a href="http://localhost:8080/DVS-Projects/Socialized.jsp">Socialized</a>
-			<a href="/DVS-Projects/CountryGeneralNews.jsp">Country Nuisance</a>
-			<a  href="/DVS-Projects/News.jsp">News</a>		
+		<a href="http://localhost:8080/DVS-Projects/HomePage.jsp" >Home</a>
+		<a href="http://localhost:8080/DVS-Projects/UploadDataToDataBase.jsp">Socialized</a>
+		<a href="http://localhost:8080/DVS-Projects/UploadDataToDB_CountryGeneralNews.jsp">Country Nuisance</a>
+		<a class="active" href="http://localhost:8080/DVS-Projects/UploadDataToDB_CountryGeneralNews.jsp">News</a>
 			<div class="top">
 				<a class='img-circle' href="HomePage.jsp"> <img class = "img-circle" src=<%=ProfilePicPath %> style="height:42px; width:42px;"></a>
 				<a href="HomePage.jsp">Edit profile</a>		 

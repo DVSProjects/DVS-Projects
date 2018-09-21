@@ -8,10 +8,10 @@
 	</head>
 	<body>	
 		<div class="topnav">		
-			<a href="/DVS-Projects/HomePage.jsp" >Home</a>
-			<a href="http://localhost:8080/DVS-Projects/Socialized.jsp">Socialized</a>
-			<a href="/DVS-Projects/CountryGeneralNews.jsp">Country Nuisance</a>
-			<a class="active" href="/DVS-Projects/News.jsp">News</a>	
+		<a href="http://localhost:8080/DVS-Projects/HomePage.jsp" >Home</a>
+		<a href="http://localhost:8080/DVS-Projects/UploadDataToDataBase.jsp">Socialized</a>
+		<a href="http://localhost:8080/DVS-Projects/UploadDataToDB_CountryGeneralNews.jsp">Country Nuisance</a>
+		<a class="active" href="http://localhost:8080/DVS-Projects/UploadDataToDB_CountryGeneralNews.jsp">News</a>
 			
 			<form action="http://localhost:8080/DVS-Projects/ProfilePicture" method="post" enctype="multipart/form-data">			
 				<div class="top" >			 
